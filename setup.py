@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='department_app',
@@ -6,10 +6,13 @@ setup(
     long_description=__doc__,
     author='Yehor Kolodii',
     author_email='yegorkolodii@gmail.com',
-    packages=[
-        'Flask>=1.1.2'
+    url='https://gitlab.com/yehor.k/epam-winter-2021-final-project',
+    install_requires=[
+        'Flask>=1.1.2',
+        'Flask-SQLAlchemy>=2.5.1',
+        'psycopg2-binary==2.8.6'
     ],
     include_package_data=True,
     zip_safe=False,
-    install_requires=['Flask']
+    packages=find_packages()
 )
