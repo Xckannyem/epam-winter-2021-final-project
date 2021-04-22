@@ -14,4 +14,4 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 migrate = Migrate(app, db)
 
-from department_app import routes, models
+from department_app import views, models
