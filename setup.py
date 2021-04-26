@@ -9,6 +9,7 @@ setup(
     url='https://gitlab.com/yehor.k/epam-winter-2021-final-project',
     install_requires=[
         'Flask>=1.1.2',
+        'Flask-Migrate>=2.7.0',
         'Flask-SQLAlchemy>=2.5.1',
         'psycopg2-binary==2.8.6'
     ],
