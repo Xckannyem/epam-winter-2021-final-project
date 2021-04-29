@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
-from .models.auth_model import Employee
+from .models.employee import Employee
+from .models.department import Department
 
 
 class RegisterForm(FlaskForm):
@@ -15,9 +17,9 @@ class RegisterForm(FlaskForm):
     last_name = StringField(label='First Name', validators=[DataRequired()])
     password = PasswordField(label='Password', validators=[Length(min=6), DataRequired()])
     confirm_password = PasswordField(label='Confirm Password', validators=[
-                                                            EqualTo('password'),
-                                                            DataRequired()
-                                                            ])
+        EqualTo('password'),
+        DataRequired()
+    ])
     submit = SubmitField(label='Create Account')
 
     def validate_username(self, username_to_check):
@@ -38,3 +40,21 @@ class LoginForm(FlaskForm):
     email = StringField(label='Email:', validators=[DataRequired(), Email()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
     submit = SubmitField(label='Sign in')
+
+
+class DepartmentForm(FlaskForm):
+    """
+    Form to add or edit a department
+    """
+    name = StringField('Name', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    submit = SubmitField(label='Submit')
+
+
+class EmployeeAssignForm(FlaskForm):
+    """
+    Form to assign departments to employees
+    """
+    department = QuerySelectField(query_factory=lambda: Department.query.all(),
+                                  get_label="name")
+    submit = SubmitField(label='Submit')

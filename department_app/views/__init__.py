@@ -3,7 +3,7 @@ from flask import render_template
 
 user = Blueprint('user', __name__)
 
-from . import auth
+from . import auth, department_view, employee_view
 
 
 @user.route('/')
