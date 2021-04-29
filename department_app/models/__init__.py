@@ -1,1 +1,2 @@
-from . import auth_model
+from . import employee
+from . import department
