@@ -1,0 +1,18 @@
+.checkbox, .mb-3 {
+    color: #000;
+}
+
+.table-wrapper {
+    overflow: auto;
+    max-width: 100%;
+}
+
+tr {
+    border-bottom: 1px;
+}
+
+th {
+    background-color: #343a40;
+    color: #fff;
+    white-space: nowrap;
+}
