@@ -1,25 +1,28 @@
-{% import "bootstrap/wtf.html" as wtf %}
 {% extends "base.html" %}
-{% block title %}Assign Employee{% endblock %}
+{% block title %}
+Assign Employee
+{% endblock %}
 {% block content %}
-<div class="content-section">
- <div class="outer">
-    <div class="middle">
-      <div class="inner">
-        <div class="center">
-            <h1> Assign Departments </h1>
-            <br/>
-            <p>
+<body class="text-center">
+    <div class="container">
+        <br/>
+        <br/>
+        <form method="POST" class="form-employees" style="color:white">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal"> Assign Departments </h1>
+            <br>
+            <p style="color: black">
                 Select a department to assign to
-                <span style="color: #aec251;">
+                <span style="border-bottom: 1px black solid">
                     {{ employee.first_name }} {{ employee.last_name }}
                 </span>
             </p>
-            <br/>
-            {{ wtf.quick_form(form) }}
-        </div>
-      </div>
+            <br>
+            {{ form.department.label() }}
+            {{ form.department(class="form-control", placeholder="Department") }}
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
     </div>
-  </div>
-</div>
+</body>
 {% endblock %}

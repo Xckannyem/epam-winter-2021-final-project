@@ -5,6 +5,8 @@ Login Page
 {% block content %}
 <body class="text-center">
    <div class="container">
+      <br/>
+      <br/>
       <form method="POST" class="form-signin" style="color:white">
          {{ form.hidden_tag() }}
          <h1 class="h3 mb-3 font-weight-normal">
@@ -17,7 +19,7 @@ Login Page
          {{ form.password(class="form-control", placeholder="Password") }}
          <br>
          <div class="checkbox mb-3">
-            <h6>Do not have an account?</h6>
+            <h6 style="">Do not have an account?</h6>
             <a class="btn btn-sm btn-secondary" href="{{ url_for('user.register_page') }}">Register</a>
          </div>
          {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
