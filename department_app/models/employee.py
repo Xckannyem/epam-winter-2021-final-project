@@ -14,14 +14,15 @@ class Employee(UserMixin, db.Model):
     __tablename__ = 'employees'
 
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(length=60), index=True, nullable=False, unique=True)
-    email = db.Column(db.String(length=60), index=True, nullable=False, unique=True)
-    first_name = db.Column(db.String(length=60), index=True, nullable=False)
-    last_name = db.Column(db.String(length=60), index=True, nullable=False)
-    password_hash = db.Column(db.String(length=128), index=True, nullable=False,)
+    username = db.Column(db.String(length=60), nullable=False, unique=True)
+    email = db.Column(db.String(length=60), nullable=False, unique=True)
+    first_name = db.Column(db.String(length=60), nullable=False)
+    last_name = db.Column(db.String(length=60), nullable=False)
+    password_hash = db.Column(db.String(length=128), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
-    is_admin = db.Column(db.Boolean, default=False)
+    salary = db.Column(db.Integer)
+    birthday = db.Column(db.Date)
+    # is_admin = db.Column(db.Boolean, default=False)
 
     @property
     def password(self):
@@ -51,19 +52,3 @@ class Employee(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(user_id):
     return Employee.query.get(int(user_id))
-
-
-class Role(db.Model):
-    """
-    Create a Role table
-    """
-
-    __tablename__ = 'roles'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(60), unique=True)
-    description = db.Column(db.String(200))
-    employees = db.relationship('Employee', backref='role', lazy='dynamic')
-
-    def __repr__(self):
-        return f'Role: {self.name}'
