@@ -32,7 +32,7 @@ def assign_employee(id):
         employee_to_assign.department = form.department.data
         db.session.add(employee_to_assign)
         db.session.commit()
-        flash('You have successfully assigned a department')
+        flash('You have successfully assigned a department.', category='success')
 
         # redirect to the roles page
         return redirect(url_for('user.show_employees'))

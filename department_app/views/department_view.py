@@ -35,7 +35,7 @@ def add_department():
             # add department to the database
             db.session.add(department_to_create)
             db.session.commit()
-            flash('You have successfully added a new department!', category='success')
+            flash('You have successfully added a new department.', category='success')
         except:
             # in case department already exists
             flash('Department already exists!', category='danger')
@@ -44,7 +44,8 @@ def add_department():
         return redirect(url_for('user.show_departments'))
 
     # load department template
-    return render_template('departments/department.html', action='Add', add_dep=add_dep, form=form)
+    return render_template('departments/department.html', action='Add',
+                           add_dep=add_dep, form=form)
 
 
 @user.route('/departments/edit/<int:id>', methods=['GET', 'POST'])
@@ -61,7 +62,7 @@ def edit_department(id):
         department.name = form.name.data
         department.description = form.description.data
         db.session.commit()
-        flash('You have successfully edited the department.')
+        flash('You have successfully edited the department.', category='success')
 
         # redirect to the departments page
         return redirect(url_for('user.show_departments'))
@@ -79,11 +80,10 @@ def delete_department(id):
     """
     Delete a department from the database
     """
-
     department = Department.query.get_or_404(id)
     db.session.delete(department)
     db.session.commit()
-    flash('You have successfully deleted the department.')
+    flash('You have successfully deleted the department.', category='success')
 
     # redirect to the departments page
     return redirect(url_for('user.show_departments'))
