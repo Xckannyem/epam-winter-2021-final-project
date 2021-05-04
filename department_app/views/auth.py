@@ -40,7 +40,7 @@ def register_page():
             flash(f'There was an error with creating a user: {err_msg}', category='danger')
 
     # load registration template
-    return render_template('register.html', form=form)
+    return render_template('auth/register.html', form=form)
 
 
 @user.route('/login', methods=['GET', 'POST'])
@@ -58,7 +58,7 @@ def login_page():
         ):
             # log employee in
             login_user(attempted_employee)
-            flash(f'Success! You are logged in as: {attempted_employee.email}', category='success')
+            flash(f'Success! You are logged in as: {attempted_employee.username}', category='success')
 
             # redirect to the home page after login (WILL UPDATE)
             return redirect(url_for('user.home_page'))
@@ -68,7 +68,7 @@ def login_page():
             flash('Email and password are not match! Please try again!', category='danger')
 
     # load login template
-    return render_template('login.html', form=form)
+    return render_template('auth/login.html', form=form)
 
 
 @user.route('/logout')
