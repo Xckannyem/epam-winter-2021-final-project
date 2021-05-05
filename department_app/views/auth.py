@@ -63,7 +63,9 @@ def login_page():
             # redirect to the home page after login (WILL UPDATE)
             return redirect(url_for('user.home_page'))
 
-        # when login details are incorrect
+        elif not attempted_employee:
+            flash('This login does not exist!', category='danger')
+
         else:
             flash('Email and password are not match! Please try again!', category='danger')
 
