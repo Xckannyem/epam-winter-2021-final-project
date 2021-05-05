@@ -3,61 +3,71 @@
 Departments
 {% endblock %}
 {% block content %}
-<div class="table-wrapper">
-  <br/>
-  <br/>
-  <h1 style="text-align:center;">Departments</h1>
-  {% if departments %}
-  <hr class="intro-divider">
-  <div class="center">
-    <table class="table table-striped table-bordered">
-      <thead>
-      <tr>
-        <th> Name </th>
-        <th> Description </th>
-        <th> Employee Count </th>
-        <th> Edit </th>
-        <th> Delete </th>
-      </tr>
-      </thead>
-      <tbody>
-      {% for department in departments %}
-      <tr>
-        <td> {{ department.name }} </td>
-        <td> {{ department.description }} </td>
-        <td>
-          {% if department.employees %}
-          {{ department.employees.count() }}
-          {% else %}
-          0
-          {% endif %}
-        </td>
-        <td>
-          <a href="{{ url_for('user.edit_department', id=department.id) }}">
-            <i class="fa fa-pencil"></i> Edit
-          </a>
-        </td>
-        <td>
-          <a href="{{ url_for('user.delete_department', id=department.id) }}">
-            <i class="fa fa-trash"></i> Delete
-          </a>
-        </td>
-      </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <div style="text-align: center">
-    {% else %}
+<body>
+  <div class="table-wrapper">
+    <br/>
+    <br/>
+    <h1 style="text-align:center;">Departments</h1>
+    {% if departments %}
+    <hr class="intro-divider">
+    <div class="center">
+      <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th> Name </th>
+          <th> Description </th>
+          <th> Employee Count </th>
+          <th> Average Salary </th>
+          <th> Average Age </th>
+          <th> Edit </th>
+          <th> Delete </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for department in departments %}
+        <tr>
+          <td> {{ department.name }} </td>
+          <td> {{ department.description }} </td>
+          <td>
+            {% if department.employees %}
+            {{ department.employees.count() }}
+            {% else %}
+            0
+            {% endif %}
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            <a href="{{ url_for('user.edit_department', id=department.id) }}">
+              <i class="fa fa-pencil"></i> Edit
+            </a>
+          </td>
+          <td>
+            <a href="{{ url_for('user.delete_department', id=department.id) }}">
+              <i class="fa fa-trash"></i> Delete
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
     <div style="text-align: center">
-      <h3> No departments have been added. </h3>
-      <hr class="intro-divider">
-      {% endif %}
-      <a href="{{ url_for('user.add_department') }}" class="btn btn-sm btn-secondary">
-        <i class="fa fa-plus"></i>
-        Add Department
-      </a>
+      {% else %}
+      <div style="text-align: center">
+        <h3> No departments have been added. </h3>
+        <hr class="intro-divider">
+        {% endif %}
+        <a href="{{ url_for('user.add_department') }}" class="btn btn-sm btn-secondary">
+          <i class="fa fa-plus"></i>
+          +Add Department
+        </a>
+      </div>
     </div>
   </div>
-</div>
+</body>
 {% endblock %}
