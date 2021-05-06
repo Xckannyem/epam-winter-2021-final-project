@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+Edit Employee
+{% endblock %}
+{% block content %}
+<body class="text-center">
+  <div class="container">
+    <br/>
+    <br/>
+    <form method="POST" class="form-1employees" style="color:white">
+      {{ form.hidden_tag() }}
+      <h1 class="h3 mb-3 font-weight-normal"> Edit Employee </h1>
+      <br>
+      <br>
+      {{ form.first_name.label() }}
+      {{ form.first_name(class="form-control", placeholder="First Name") }}
+      {{ form.last_name.label() }}
+      {{ form.last_name(class="form-control", placeholder="First Name") }}
+      {{ form.salary.label() }}
+      {{ form.salary(class="form-control", placeholder="Salary") }}
+      {{ form.birthday.label() }}
+      {{ form.birthday(class="form-control", placeholder="Birthday") }}
+      <br>
+      {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+    </form>
+  </div>
+</body>
+{% endblock %}

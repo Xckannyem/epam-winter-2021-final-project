@@ -16,6 +16,7 @@ Employees
         <tr>
           <th> Name </th>
           <th> Department </th>
+          <th> Edit </th>
           <th> Assign </th>
         </tr>
         </thead>
@@ -29,6 +30,11 @@ Employees
             {% else %}
             -
             {% endif %}
+          </td>
+          <td>
+            <a href="{{ url_for('user.edit_employee', id=employee.id) }}">
+              <i class="fa fa-pencil"></i> Edit
+            </a>
           </td>
           <td>
             <a href="{{ url_for('user.assign_employee', id=employee.id) }}">
