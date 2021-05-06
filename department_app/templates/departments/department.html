@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-    {% if add_department %}
+    {% if add_dep %}
         Add Department
     {% else %}
         Edit Department
@@ -13,7 +13,7 @@
         <br/>
         <form method="POST" class="form-departments" style="color:white">
             {{ form.hidden_tag() }}
-            {% if add_department %}
+            {% if add_dep %}
                 <h1 class="h3 mb-3 font-weight-normal">Add Department</h1>
             {% else %}
                 <h1 class="h3 mb-3 font-weight-normal">Edit Department</h1>

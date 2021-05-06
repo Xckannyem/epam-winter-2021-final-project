@@ -21,7 +21,7 @@ def register_page():
             email=form.email.data,
             first_name=form.first_name.data,
             last_name=form.last_name.data,
-            password=form.password.data
+            password_hash=form.password.data
         )
 
         # add employee to the database
