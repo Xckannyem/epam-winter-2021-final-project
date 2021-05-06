@@ -51,6 +51,17 @@ class DepartmentForm(FlaskForm):
     submit = SubmitField(label='Submit')
 
 
+class EmployeeForm(FlaskForm):
+    """
+    Form to add or edit a department
+    """
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    salary = StringField('Salary', validators=[DataRequired()])
+    birthday = StringField('Birthday', validators=[DataRequired()])
+    submit = SubmitField(label='Submit')
+
+
 class EmployeeAssignForm(FlaskForm):
     """
     Form to assign departments to employees
