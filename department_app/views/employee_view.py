@@ -73,7 +73,7 @@ def edit_employee(id):
 
 @user.route('/employees/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
-def delete_department(id):
+def delete_employee(id):
     """
     Delete a department from the database
     """
@@ -83,4 +83,4 @@ def delete_department(id):
     flash('You have successfully deleted the employee.', category='success')
 
     # redirect to the departments page
-    return redirect(url_for('user.show_departments'))
+    return redirect(url_for('user.show_employees'))
