@@ -41,6 +41,38 @@ def assign_employee(id):
                            employee=employee_to_assign, form=form)
 
 
+@user.route('/employees/add', methods=['GET', 'POST'])
+@login_required
+def add_employee():
+    """
+    Add an employee to the database
+    """
+    add_emp = True
+
+    form = EmployeeForm()
+    if form.validate_on_submit():
+        employee_to_add = Employee(
+                                      first_name=form.first_name.data,
+                                      last_name=form.last_name.data,
+                                      salary=form.salary.data,
+                                      birthday=form.birthday.data
+                                      )
+        try:
+            # add employee to the database
+            db.session.add(employee_to_add)
+            db.session.commit()
+            flash('You have successfully added a new employee.', category='success')
+        except:
+            flash('Something went wrong when creating a new employee.', category='danger')
+
+        # redirect to employee page
+        return redirect(url_for('user.show_employees'))
+
+    # load department template
+    return render_template('employees/employee.html', action='Add',
+                           add_emp=add_emp, form=form)
+
+
 @user.route('/employees/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_employee(id):
@@ -66,7 +98,7 @@ def edit_employee(id):
     form.last_name.data = employee.last_name
     form.salary.data = employee.salary
     form.birthday.data = employee.birthday
-    return render_template('employees/edit_employee.html', action="Edit",
+    return render_template('employees/employee.html', action="Edit",
                            add_emp=add_emp, form=form,
                            employee=employee)
 

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}
-Edit Employee
+  {% if add_emp %}
+    Add Employee
+  {% else %}
+    Edit Employee
+  {% endif %}
 {% endblock %}
 {% block content %}
 <body class="text-center">
@@ -9,13 +13,17 @@ Edit Employee
     <br/>
     <form method="POST" class="form-1employees" style="color:white">
       {{ form.hidden_tag() }}
-      <h1 class="h3 mb-3 font-weight-normal"> Edit Employee </h1>
+      {% if add_emp %}
+        <h1 class="h3 mb-3 font-weight-normal"> Add Employee </h1>
+      {% else %}
+        <h1 class="h3 mb-3 font-weight-normal"> Edit Employee </h1>
+      {% endif %}
       <br>
       <br>
       {{ form.first_name.label() }}
       {{ form.first_name(class="form-control", placeholder="First Name") }}
       {{ form.last_name.label() }}
-      {{ form.last_name(class="form-control", placeholder="First Name") }}
+      {{ form.last_name(class="form-control", placeholder="Last Name") }}
       {{ form.salary.label() }}
       {{ form.salary(class="form-control", placeholder="Salary") }}
       {{ form.birthday.label() }}
