@@ -75,7 +75,7 @@ def edit_employee(id):
 @login_required
 def delete_employee(id):
     """
-    Delete a department from the database
+    Delete an employee from the database
     """
     employee = Employee.query.get_or_404(id)
     db.session.delete(employee)
