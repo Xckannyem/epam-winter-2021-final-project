@@ -14,7 +14,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 migrate = Migrate(app, db)
 
-from department_app import views, models
+from department_app import models
 
 from .views import user as user_blueprint
 app.register_blueprint(user_blueprint)
