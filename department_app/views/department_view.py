@@ -29,8 +29,10 @@ def add_department():
 
     form = DepartmentForm()
     if form.validate_on_submit():
-        department_to_create = Department(name=form.name.data,
-                                          description=form.description.data)
+        department_to_create = Department(
+            name=form.name.data,
+            description=form.description.data
+        )
         try:
             # add department to the database
             db.session.add(department_to_create)

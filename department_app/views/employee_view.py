@@ -1,3 +1,4 @@
+# noinspection PyUnresolvedReferences
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required
 
@@ -34,7 +35,7 @@ def assign_employee(id):
         db.session.commit()
         flash('You have successfully assigned a department.', category='success')
 
-        # redirect to the roles page
+        # redirect to the employees page
         return redirect(url_for('user.show_employees'))
 
     return render_template('employees/assign_employee.html',
@@ -52,11 +53,11 @@ def add_employee():
     form = EmployeeForm()
     if form.validate_on_submit():
         employee_to_add = Employee(
-                                      first_name=form.first_name.data,
-                                      last_name=form.last_name.data,
-                                      salary=form.salary.data,
-                                      birthday=form.birthday.data
-                                      )
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            salary=form.salary.data,
+            birthday=form.birthday.data
+        )
         try:
             # add employee to the database
             db.session.add(employee_to_add)
@@ -68,7 +69,7 @@ def add_employee():
         # redirect to employee page
         return redirect(url_for('user.show_employees'))
 
-    # load department template
+    # load employee template
     return render_template('employees/employee.html', action='Add',
                            add_emp=add_emp, form=form)
 
@@ -91,7 +92,7 @@ def edit_employee(id):
         db.session.commit()
         flash('You have successfully edited the employee.', category='success')
 
-        # redirect to the departments page
+        # redirect to the employees page
         return redirect(url_for('user.show_employees'))
 
     form.first_name.data = employee.first_name
@@ -114,5 +115,5 @@ def delete_employee(id):
     db.session.commit()
     flash('You have successfully deleted the employee.', category='success')
 
-    # redirect to the departments page
+    # redirect to the employees page
     return redirect(url_for('user.show_employees'))

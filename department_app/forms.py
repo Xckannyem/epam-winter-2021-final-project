@@ -53,7 +53,7 @@ class DepartmentForm(FlaskForm):
 
 class EmployeeForm(FlaskForm):
     """
-    Form to add or edit a department
+    Form to add or edit an employee
     """
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
