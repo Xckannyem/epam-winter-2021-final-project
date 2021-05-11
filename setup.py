@@ -11,6 +11,7 @@ setup(
         'Flask>=1.1.2',
         'Flask-Migrate>=2.7.0',
         'Flask-SQLAlchemy>=2.5.1',
+        'Flask-RESTful>=0.3.8'
         'psycopg2-binary==2.8.6'
     ],
     include_package_data=True,
