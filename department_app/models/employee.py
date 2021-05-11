@@ -3,6 +3,8 @@ from flask_login import UserMixin
 from department_app import db, login_manager
 from department_app import bcrypt
 
+from .department import Department
+
 
 class Employee(UserMixin, db.Model):
     """
@@ -22,7 +24,6 @@ class Employee(UserMixin, db.Model):
     department_id = db.Column(db.Integer, db.ForeignKey('departments.id'))
     salary = db.Column(db.Integer)
     birthday = db.Column(db.Date)
-    # is_admin = db.Column(db.Boolean, default=False)
 
     @property
     def password(self):
@@ -43,6 +44,21 @@ class Employee(UserMixin, db.Model):
         Check if hashed password matches actual password
         """
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
+
+    def to_dict(self):
+        """
+        Serializer that returns a dictionary from its fields (in json format)
+        """
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'department': Department.query.get_or_404(self.department_id).name,
+            'salary': self.salary,
+            'birthday': self.birthday.strftime('%m/%d/%Y')
+        }
 
     def __repr__(self):
         return f'Employee: {self.username}'
