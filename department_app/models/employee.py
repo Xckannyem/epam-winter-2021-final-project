@@ -1,3 +1,5 @@
+from datetime import date
+
 from flask_login import UserMixin
 
 from department_app import db, login_manager
@@ -44,6 +46,13 @@ class Employee(UserMixin, db.Model):
         Check if hashed password matches actual password
         """
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
+
+    def calculate_age(self, birth):
+        """
+        Calculate the age of an employee by date of birth
+        """
+        today = date.today()
+        return today.year - birth.year - ((today.month, today.day) < (birth.month, birth.day))
 
     def to_dict(self):
         """
