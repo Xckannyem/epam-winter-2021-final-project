@@ -36,10 +36,34 @@ Departments
                 {% endif %}
               </td>
               <td>
-                0
+                <!--
+                Calculate the average salary for each department based on
+                employee salary data and the number of employees in the department
+                -->
+                {% set average_salary = [] %}
+                {% for employee in department.employees %}
+                  {% if average_salary.append(employee.salary) %}{% endif %}
+                {% endfor %}
+                {% if department.employees.count() > 0 %}
+                  {{ (average_salary | sum / average_salary | count) | round(2) }}
+                {% else %}
+                  0
+                {% endif %}
               </td>
               <td>
-                0
+                <!--
+                Calculate the average age of employees for each department based on
+                employee birthdays and the number of employees in the department
+                -->
+                {% set average_age = [] %}
+                {% for employee in department.employees %}
+                  {% if average_age.append(employee.calculate_age(employee.birthday)) %}{% endif %}
+                {% endfor %}
+                {% if department.employees.count() > 0 %}
+                  {{ (average_age | sum / average_age | count) | round(2) }}
+                {% else %}
+                  0
+                {% endif %}
               </td>
               <td>
                 <a href="{{ url_for('user.edit_department', id=department.id) }}">Edit</a>
