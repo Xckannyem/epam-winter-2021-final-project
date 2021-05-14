@@ -16,6 +16,9 @@ Employees
           <tr>
             <th> Name </th>
             <th> Department </th>
+            <th> Salary </th>
+            <th> Birthday </th>
+            <th> Age </th>
             <th> Edit </th>
             <th> Assign </th>
           </tr>
@@ -31,6 +34,9 @@ Employees
                   -
                 {% endif %}
               </td>
+              <td>${{ employee.salary }}</td>
+              <td>{{ employee.birthday }}</td>
+              <td>{{ employee.calculate_age(employee.birthday) }} y.o.</td>
               <td>
                 <a href="{{ url_for('user.edit_employee', id=employee.id) }}">Edit</a>
               </td>
