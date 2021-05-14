@@ -40,12 +40,12 @@ Departments
                 Calculate the average salary for each department based on
                 employee salary data and the number of employees in the department
                 -->
-                {% set average_salary = [] %}
+                {% set salaries = [] %}
                 {% for employee in department.employees %}
-                  {% if average_salary.append(employee.salary) %}{% endif %}
+                  {% if salaries.append(employee.salary) %}{% endif %}
                 {% endfor %}
                 {% if department.employees.count() > 0 %}
-                  {{ (average_salary | sum / average_salary | count) | round(2) }}
+                  ${{ (salaries | sum / salaries | count) | round(2) }}
                 {% else %}
                   0
                 {% endif %}
@@ -55,12 +55,12 @@ Departments
                 Calculate the average age of employees for each department based on
                 employee birthdays and the number of employees in the department
                 -->
-                {% set average_age = [] %}
+                {% set ages = [] %}
                 {% for employee in department.employees %}
-                  {% if average_age.append(employee.calculate_age(employee.birthday)) %}{% endif %}
+                  {% if ages.append(employee.calculate_age(employee.birthday)) %}{% endif %}
                 {% endfor %}
                 {% if department.employees.count() > 0 %}
-                  {{ (average_age | sum / average_age | count) | round(2) }}
+                  {{ (ages | sum / ages | count) | round(1) }} y.o.
                 {% else %}
                   0
                 {% endif %}
