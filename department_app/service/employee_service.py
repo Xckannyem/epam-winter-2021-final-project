@@ -6,21 +6,11 @@ from ..models.employee import Employee
 
 def get_all_employees():
     """
-    This function is used to select all records from employees table
+    Get all records from employees table
     :return: the list of all employees
     """
     employees = Employee.query.all()
     return [employee.to_dict() for employee in employees]
-
-
-def get_employee_by_id(id):
-    """
-    This function is used to get the single employee by id
-    :param id: the id of the employee to get
-    :return: the employee with the specified id
-    """
-    employee = Employee.query.get(id)
-    return employee.to_dict()
 
 
 def add_employee(first_name, last_name, salary, birthday):
@@ -60,3 +50,46 @@ def delete_employee(id):
     employee = Employee.query.get_or_404(id)
     db.session.delete(employee)
     db.session.commit()
+
+
+def get_employee_by_id(id):
+    """
+    This function is used to get the single employee by id
+    :param id: the id of the employee to get
+    :return: the employee with the specified id
+    """
+    employee = Employee.query.get(id)
+    return employee.to_dict()
+
+
+def get_all_employees_in_department(department):
+    """
+    Get all employees in specified department
+    :return: the list of employees working in the specified department
+    """
+    employees = Employee.query.filter_by(department_id=department['id']).all()
+    return [employee.to_dict() for employee in employees]
+
+
+def get_employees_born_on(born):
+    """
+    Get all employees born on a specified date
+    :param born: the date to filter with
+    :return: the list of employees born on a specified date
+    """
+    born = datetime.strptime(born, '\'%m/%d/%Y\'').date()
+    employees = Employee.query.filter_by(birthday=born)
+    return [employee.to_dict() for employee in employees]
+
+
+def get_employees_born_between(start_date, end_date):
+    """
+    Get all employees born between specified end and start dates
+    :param start_date: the date to start comparison with
+    :param end_date: the date to end comparison with
+    :return: the list of employees born between start and end dates
+    """
+    start_date = datetime.strptime(start_date, '\'%m/%d/%Y\'').date()
+    end_date = datetime.strptime(end_date, '\'%m/%d/%Y\'').date()
+    employees = Employee.query.filter(Employee.birthday.between(start_date, end_date))
+    return [employee.to_dict() for employee in employees]
