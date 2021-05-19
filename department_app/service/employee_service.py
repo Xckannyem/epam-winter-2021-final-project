@@ -1,6 +1,12 @@
+"""
+This module consists of the CRUD operations to work with `employees` table
+"""
+# pylint: disable=cyclic-import
 from datetime import datetime
 
 from department_app import db
+
+# pylint: disable=relative-beyond-top-level
 from ..models.employee import Employee
 
 
@@ -14,6 +20,13 @@ def get_all_employees():
 
 
 def add_employee(first_name, last_name, salary, birthday):
+    """
+    Add a new employee
+    :param first_name: the employee first name
+    :param last_name: the employee last name
+    :param salary: the employee salary
+    :param birthday: the employee birthday in format '%m/%d/%Y'
+    """
     birthday = datetime.strptime(birthday, '%m/%d/%Y')
     employee = Employee(
         first_name=first_name,
@@ -21,12 +34,15 @@ def add_employee(first_name, last_name, salary, birthday):
         salary=salary,
         birthday=birthday
     )
+    # pylint: disable=no-member
     db.session.add(employee)
     db.session.commit()
 
 
+# pylint: disable=invalid-name
 def update_employee(id, first_name, last_name, salary, birthday):
     """
+    Update an existing employee
     :param id: id by which the required employee is updated
     :param first_name: the employee first name
     :param last_name: the employee last name
@@ -38,20 +54,24 @@ def update_employee(id, first_name, last_name, salary, birthday):
     employee.last_name = last_name
     employee.salary = salary
     employee.birthday = birthday
+    # pylint: disable=no-member
     db.session.add(employee)
     db.session.commit()
 
 
+# pylint: disable=invalid-name
 def delete_employee(id):
     """
-    Delete an existing department employee
+    Delete an existing employee
     :param id: id by which the required employee is deleted
     """
     employee = Employee.query.get_or_404(id)
+    # pylint: disable=no-member
     db.session.delete(employee)
     db.session.commit()
 
 
+# pylint: disable=invalid-name
 def get_employee_by_id(id):
     """
     This function is used to get the single employee by id

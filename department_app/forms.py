@@ -1,8 +1,12 @@
+"""
+form.py file of forms module for storing web form classes
+"""
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
+# pylint: disable=relative-beyond-top-level
 from .models.employee import Employee
 from .models.department import Department
 
@@ -22,12 +26,19 @@ class RegisterForm(FlaskForm):
     ])
     submit = SubmitField(label='Create Account')
 
+    # pylint: disable=no-self-use
     def validate_username(self, username_to_check):
+        """
+        Username validation function
+        """
         user = Employee.query.filter_by(username=username_to_check.data).first()
         if user:
             raise ValidationError('Username already exist! Please try a different username')
 
     def validate_email(self, email_to_check):
+        """
+        Email validation function
+        """
         email = Employee.query.filter_by(email=email_to_check.data).first()
         if email:
             raise ValidationError('Email already exist! Please try a different email')
@@ -62,6 +73,7 @@ class EmployeeForm(FlaskForm):
     submit = SubmitField(label='Submit')
 
 
+# pylint: disable=unnecessary-lambda
 class EmployeeAssignForm(FlaskForm):
     """
     Form to assign departments to employees

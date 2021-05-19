@@ -1,3 +1,7 @@
+"""
+This module consists of the class Department to work with `departments` table
+"""
+# pylint: disable=cyclic-import
 from department_app import db
 
 
@@ -15,7 +19,8 @@ class Department(db.Model):
 
     def to_dict(self):
         """
-        Serializer that returns a dictionary from its fields (in json format)
+        Serializer that returns a dictionary from its fields
+        :return: the department in json format
         """
         return {
             'id': self.id,
@@ -25,4 +30,8 @@ class Department(db.Model):
         }
 
     def __repr__(self):
+        """
+        Representation of the department
+        :return: a string representing the department by name
+        """
         return f'Department: {self.name}'

@@ -1,6 +1,13 @@
+"""
+This module represents the logic on routes starting with /departments
+"""
+
+# pylint: disable=cyclic-import
+# pylint: disable=import-error
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_required
 
+# pylint: disable=relative-beyond-top-level
 from .. import db
 from ..models.department import Department
 from ..forms import DepartmentForm
@@ -34,10 +41,12 @@ def add_department():
             description=form.description.data
         )
         try:
+            # pylint: disable=no-member
             # add department to the database
             db.session.add(department_to_create)
             db.session.commit()
             flash('You have successfully added a new department.', category='success')
+        # pylint: disable=bare-except
         except:
             # in case department already exists
             flash('Department already exists!', category='danger')
@@ -50,19 +59,20 @@ def add_department():
                            add_dep=add_dep, form=form)
 
 
-@user.route('/departments/edit/<int:id>', methods=['GET', 'POST'])
+@user.route('/departments/edit/<int:dep_id>', methods=['GET', 'POST'])
 @login_required
-def edit_department(id):
+def edit_department(dep_id):
     """
     Edit a department
     """
     add_dep = False
 
-    department = Department.query.get_or_404(id)
+    department = Department.query.get_or_404(dep_id)
     form = DepartmentForm(obj=department)
     if form.validate_on_submit():
         department.name = form.name.data
         department.description = form.description.data
+        # pylint: disable=no-member
         db.session.commit()
         flash('You have successfully edited the department.', category='success')
 
@@ -76,13 +86,14 @@ def edit_department(id):
                            department=department)
 
 
-@user.route('/departments/delete/<int:id>', methods=['GET', 'POST'])
+@user.route('/departments/delete/<int:dep_id>', methods=['GET', 'POST'])
 @login_required
-def delete_department(id):
+def delete_department(dep_id):
     """
     Delete a department from the database
     """
-    department = Department.query.get_or_404(id)
+    department = Department.query.get_or_404(dep_id)
+    # pylint: disable=no-member
     db.session.delete(department)
     db.session.commit()
     flash('You have successfully deleted the department.', category='success')

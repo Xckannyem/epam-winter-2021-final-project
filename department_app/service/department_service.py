@@ -1,5 +1,10 @@
+"""
+This module consists of the CRUD operations to work with `departments` table
+"""
+# pylint: disable=cyclic-import
 from department_app import db
 
+# pylint: disable=relative-beyond-top-level
 from ..models.department import Department
 from ..models.employee import Employee
 
@@ -20,10 +25,12 @@ def add_department(name, description):
     :param description: the department description
     """
     department = Department(name=name, description=description)
+    # pylint: disable=no-member
     db.session.add(department)
     db.session.commit()
 
 
+# pylint: disable=invalid-name
 def update_department(id, name, description):
     """
     Update an existing department
@@ -34,20 +41,24 @@ def update_department(id, name, description):
     department = Department.query.get_or_404(id)
     department.name = name
     department.description = description
+    # pylint: disable=no-member
     db.session.add(department)
     db.session.commit()
 
 
+# pylint: disable=invalid-name
 def delete_department(id):
     """
     Delete an existing department
     :param id: id by which the required department is deleted
     """
     department = Department.query.get_or_404(id)
+    # pylint: disable=no-member
     db.session.delete(department)
     db.session.commit()
 
 
+# pylint: disable=invalid-name
 def get_department_by_id(id):
     """
     Get a specific department from departments table by id

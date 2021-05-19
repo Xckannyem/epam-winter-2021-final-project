@@ -1,6 +1,11 @@
+"""
+This module consists of the REST operations to work with employees
+"""
+# pylint: disable=cyclic-import
 from flask import jsonify, request
 from flask_restful import Resource
 
+# pylint: disable=relative-beyond-top-level
 from ..service import employee_service
 
 
@@ -42,6 +47,7 @@ class EmployeeListApi(Resource):
         return 'Employee has been successfully added', 201
 
 
+# pylint: disable=invalid-name
 class Employee(Resource):
     """
     Class for Employee Resource available at /employees/<id> url

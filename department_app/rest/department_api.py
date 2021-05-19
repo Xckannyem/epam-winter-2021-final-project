@@ -1,6 +1,11 @@
+"""
+This module consists of the REST operations to work with departments
+"""
+# pylint: disable=cyclic-import
 from flask import jsonify, request
 from flask_restful import Resource
 
+# pylint: disable=relative-beyond-top-level
 from ..service import department_service
 
 
@@ -38,6 +43,7 @@ class DepartmentListApi(Resource):
         return 'Department has been successfully added', 201
 
 
+# pylint: disable=invalid-name
 class Department(Resource):
     """
     Class for Department Resource available at '/api/departments/<id>' url

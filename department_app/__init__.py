@@ -1,3 +1,14 @@
+"""
+__init__.py file of department_app module.
+Import all the necessary modules and submodules.
+Define all the needed variables for the application to work properly
+"""
+
+# pylint: disable=cyclic-import
+# pylint: disable=import-outside-toplevel
+# pylint: disable=unused-import
+# pylint: disable=import-error
+# because flask_bcrypt, flask_login, flask_migrate work fine
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -13,6 +24,10 @@ bcrypt = Bcrypt()
 
 
 def create_app():
+    """
+    Create flask application
+    :return: the created flask application
+    """
     app = Flask(__name__)
     app.config.from_object(Config)
 

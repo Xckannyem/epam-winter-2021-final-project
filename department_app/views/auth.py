@@ -1,6 +1,12 @@
+"""
+This module represents the logic on routes starting with /register, /login and /logout
+"""
+# pylint: disable=cyclic-import
+# pylint: disable=import-error
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required
 
+# pylint: disable=relative-beyond-top-level
 from .. import db
 from ..models.employee import Employee
 from ..forms import RegisterForm, LoginForm
@@ -24,16 +30,18 @@ def register_page():
             password_hash=form.password.data
         )
 
+        # pylint: disable=no-member
         # add employee to the database
         db.session.add(employee_to_create)
         db.session.commit()
         login_user(employee_to_create)
-        flash(f'Account created successfully! You are now logged in as {employee_to_create.username}',
-              category='success')
+        flash(f'Account created successfully! You are now logged in '
+              f'as {employee_to_create.username}', category='success')
 
         # redirect to the home page (WILL UPDATE)
         return redirect(url_for('user.home_page'))
 
+    # pylint: disable=no-member
     # if there are no errors from the validations
     if form.errors != {}:
         for err_msg in form.errors.values():
@@ -58,7 +66,8 @@ def login_page():
         ):
             # log employee in
             login_user(attempted_employee)
-            flash(f'Success! You are logged in as: {attempted_employee.username}', category='success')
+            flash(f'Success! You are logged in as: '
+                  f'{attempted_employee.username}', category='success')
 
             # redirect to the home page after login (WILL UPDATE)
             return redirect(url_for('user.home_page'))

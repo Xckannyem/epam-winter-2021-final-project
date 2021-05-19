@@ -1,7 +1,13 @@
-# noinspection PyUnresolvedReferences
-from flask import render_template, redirect, url_for, flash, request
+"""
+This module represents the logic on routes starting with /employees
+"""
+
+# pylint: disable=cyclic-import
+# pylint: disable=import-error
+from flask import render_template, redirect, url_for, flash
 from flask_login import login_required
 
+# pylint: disable=relative-beyond-top-level
 from .. import db
 from ..models.employee import Employee
 from ..forms import EmployeeAssignForm, EmployeeForm
@@ -20,17 +26,18 @@ def show_employees():
     return render_template('employees/employees.html', employees=employees)
 
 
-@user.route('/employees/assign/<int:id>', methods=['GET', 'POST'])
+@user.route('/employees/assign/<int:emp_id>', methods=['GET', 'POST'])
 @login_required
-def assign_employee(id):
+def assign_employee(emp_id):
     """
     Assign a department to an employee
     """
-    employee_to_assign = Employee.query.get_or_404(id)
+    employee_to_assign = Employee.query.get_or_404(emp_id)
 
     form = EmployeeAssignForm(obj=employee_to_assign)
     if form.validate_on_submit():
         employee_to_assign.department = form.department.data
+        # pylint: disable=no-member
         db.session.add(employee_to_assign)
         db.session.commit()
         flash('You have successfully assigned a department.', category='success')
@@ -59,10 +66,12 @@ def add_employee():
             birthday=form.birthday.data
         )
         try:
+            # pylint: disable=no-member
             # add employee to the database
             db.session.add(employee_to_add)
             db.session.commit()
             flash('You have successfully added a new employee.', category='success')
+        # pylint: disable=bare-except
         except:
             flash('Something went wrong when creating a new employee.', category='danger')
 
@@ -74,21 +83,22 @@ def add_employee():
                            add_emp=add_emp, form=form)
 
 
-@user.route('/employees/edit/<int:id>', methods=['GET', 'POST'])
+@user.route('/employees/edit/<int:emp_id>', methods=['GET', 'POST'])
 @login_required
-def edit_employee(id):
+def edit_employee(emp_id):
     """
     Edit an employee
     """
     add_emp = False
 
-    employee = Employee.query.get_or_404(id)
+    employee = Employee.query.get_or_404(emp_id)
     form = EmployeeForm(obj=employee)
     if form.validate_on_submit():
         employee.first_name = form.first_name.data
         employee.last_name = form.last_name.data
         employee.salary = form.salary.data
         employee.birthday = form.birthday.data
+        # pylint: disable=no-member
         db.session.commit()
         flash('You have successfully edited the employee.', category='success')
 
@@ -104,13 +114,14 @@ def edit_employee(id):
                            employee=employee)
 
 
-@user.route('/employees/delete/<int:id>', methods=['GET', 'POST'])
+@user.route('/employees/delete/<int:emp_id>', methods=['GET', 'POST'])
 @login_required
-def delete_employee(id):
+def delete_employee(emp_id):
     """
     Delete an employee from the database
     """
-    employee = Employee.query.get_or_404(id)
+    employee = Employee.query.get_or_404(emp_id)
+    # pylint: disable=no-member
     db.session.delete(employee)
     db.session.commit()
     flash('You have successfully deleted the employee.', category='success')
