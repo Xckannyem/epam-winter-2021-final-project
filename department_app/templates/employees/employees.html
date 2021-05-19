@@ -34,14 +34,32 @@ Employees
                   -
                 {% endif %}
               </td>
-              <td> ${{ employee.salary }} </td>
-              <td> {{ employee.birthday }} </td>
-              <td> {{ employee.calculate_age(employee.birthday) }} y.o. </td>
               <td>
-                <a href="{{ url_for('user.edit_employee', emp_id=employee.id) }}">Edit</a>
+                {% if employee.birthday %}
+                  ${{ employee.salary }}
+                {% else %}
+                -
+                {% endif %}
               </td>
               <td>
-                <a href="{{ url_for('user.assign_employee', emp_id=employee.id) }}">
+                {% if employee.birthday %}
+                  {{ employee.birthday }}
+                {% else %}
+                -
+                {% endif %}
+              </td>
+              <td>
+                {% if employee.birthday %}
+                  {{ employee.calculate_age(employee.birthday) }} y.o.
+                {% else %}
+                -
+                {% endif %}
+              </td>
+              <td>
+                <a href="{{ url_for('user.edit_employee', id=employee.id) }}">Edit</a>
+              </td>
+              <td>
+                <a href="{{ url_for('user.assign_employee', id=employee.id) }}">
                   <i class="fa fa-user-plus"></i>
                   Assign
                 </a>

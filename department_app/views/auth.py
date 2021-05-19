@@ -38,7 +38,7 @@ def register_page():
         flash(f'Account created successfully! You are now logged in '
               f'as {employee_to_create.username}', category='success')
 
-        # redirect to the home page (WILL UPDATE)
+        # redirect to the home page
         return redirect(url_for('user.home_page'))
 
     # pylint: disable=no-member
@@ -69,7 +69,7 @@ def login_page():
             flash(f'Success! You are logged in as: '
                   f'{attempted_employee.username}', category='success')
 
-            # redirect to the home page after login (WILL UPDATE)
+            # redirect to the home page after login
             return redirect(url_for('user.home_page'))
 
         elif not attempted_employee:

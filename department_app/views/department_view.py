@@ -59,15 +59,16 @@ def add_department():
                            add_dep=add_dep, form=form)
 
 
-@user.route('/departments/edit/<int:dep_id>', methods=['GET', 'POST'])
+# pylint: disable=invalid-name
+@user.route('/departments/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
-def edit_department(dep_id):
+def edit_department(id):
     """
     Edit a department
     """
     add_dep = False
 
-    department = Department.query.get_or_404(dep_id)
+    department = Department.query.get_or_404(id)
     form = DepartmentForm(obj=department)
     if form.validate_on_submit():
         department.name = form.name.data
@@ -86,13 +87,14 @@ def edit_department(dep_id):
                            department=department)
 
 
-@user.route('/departments/delete/<int:dep_id>', methods=['GET', 'POST'])
+# pylint: disable=invalid-name
+@user.route('/departments/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
-def delete_department(dep_id):
+def delete_department(id):
     """
     Delete a department from the database
     """
-    department = Department.query.get_or_404(dep_id)
+    department = Department.query.get_or_404(id)
     # pylint: disable=no-member
     db.session.delete(department)
     db.session.commit()

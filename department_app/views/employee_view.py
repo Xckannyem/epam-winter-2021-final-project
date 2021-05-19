@@ -26,13 +26,14 @@ def show_employees():
     return render_template('employees/employees.html', employees=employees)
 
 
-@user.route('/employees/assign/<int:emp_id>', methods=['GET', 'POST'])
+# pylint: disable=invalid-name
+@user.route('/employees/assign/<int:id>', methods=['GET', 'POST'])
 @login_required
-def assign_employee(emp_id):
+def assign_employee(id):
     """
     Assign a department to an employee
     """
-    employee_to_assign = Employee.query.get_or_404(emp_id)
+    employee_to_assign = Employee.query.get_or_404(id)
 
     form = EmployeeAssignForm(obj=employee_to_assign)
     if form.validate_on_submit():
@@ -83,15 +84,16 @@ def add_employee():
                            add_emp=add_emp, form=form)
 
 
-@user.route('/employees/edit/<int:emp_id>', methods=['GET', 'POST'])
+# pylint: disable=invalid-name
+@user.route('/employees/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
-def edit_employee(emp_id):
+def edit_employee(id):
     """
     Edit an employee
     """
     add_emp = False
 
-    employee = Employee.query.get_or_404(emp_id)
+    employee = Employee.query.get_or_404(id)
     form = EmployeeForm(obj=employee)
     if form.validate_on_submit():
         employee.first_name = form.first_name.data
@@ -114,13 +116,14 @@ def edit_employee(emp_id):
                            employee=employee)
 
 
-@user.route('/employees/delete/<int:emp_id>', methods=['GET', 'POST'])
+# pylint: disable=invalid-name
+@user.route('/employees/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
-def delete_employee(emp_id):
+def delete_employee(id):
     """
     Delete an employee from the database
     """
-    employee = Employee.query.get_or_404(emp_id)
+    employee = Employee.query.get_or_404(id)
     # pylint: disable=no-member
     db.session.delete(employee)
     db.session.commit()

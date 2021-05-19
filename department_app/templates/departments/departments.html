@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 {% block title %}
 Departments
 {% endblock %}
@@ -41,8 +42,10 @@ Departments
                 employee salary data and the number of employees in the department
                 -->
                 {% set salaries = [] %}
-                {% for employee in department.employees %}
-                  {% if salaries.append(employee.salary) %}{% endif %}
+                {% for employee in department.employees | sort(attribute='salary') %}
+                  {% if employee.salary %}
+                    {% if salaries.append(employee.salary) %}{% endif %}
+                  {% endif %}
                 {% endfor %}
                 {% if department.employees.count() > 0 %}
                   ${{ (salaries | sum / salaries | count) | round(2) }}
@@ -57,7 +60,9 @@ Departments
                 -->
                 {% set ages = [] %}
                 {% for employee in department.employees %}
+                {% if employee.birthday %}
                   {% if ages.append(employee.calculate_age(employee.birthday)) %}{% endif %}
+                {% endif %}
                 {% endfor %}
                 {% if department.employees.count() > 0 %}
                   {{ (ages | sum / ages | count) | round(1) }} y.o.
@@ -66,10 +71,10 @@ Departments
                 {% endif %}
               </td>
               <td>
-                <a href="{{ url_for('user.edit_department', dep_id=department.id) }}">Edit</a>
+                <a href="{{ url_for('user.edit_department', id=department.id) }}">Edit</a>
               </td>
               <td>
-                <a href="{{ url_for('user.delete_department', dep_id=department.id) }}">
+                <a href="{{ url_for('user.delete_department', id=department.id) }}">
                   <i class="fa fa-trash"></i>
                   Delete
                 </a>
