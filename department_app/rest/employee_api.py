@@ -37,8 +37,12 @@ class EmployeeListApi(Resource):
             return {'message': 'Wrong data'}, 400
         try:
             employee_service.add_employee(
+                username=employee_json['username'],
+                email=employee_json['email'],
                 first_name=employee_json['first_name'],
                 last_name=employee_json['last_name'],
+                password=employee_json['password'],
+                department_id=employee_json['department_id'],
                 salary=employee_json['salary'],
                 birthday=employee_json['birthday']
             )
@@ -72,8 +76,12 @@ class Employee(Resource):
         try:
             employee_service.update_employee(
                 id,
+                username=employee_json['username'],
+                email=employee_json['email'],
                 first_name=employee_json['first_name'],
                 last_name=employee_json['last_name'],
+                password=employee_json['password'],
+                department_id=employee_json['department_id'],
                 salary=employee_json['salary'],
                 birthday=employee_json['birthday']
             )
@@ -92,8 +100,12 @@ class Employee(Resource):
         try:
             employee_service.update_employee(
                 id,
+                username=department_json.get('username'),
+                email=department_json.get('email'),
                 first_name=department_json.get('first_name'),
                 last_name=department_json.get('last_name'),
+                password=department_json.get('password'),
+                department_id=department_json.get('department_id'),
                 salary=department_json.get('salary'),
                 birthday=department_json.get('birthday')
             )
