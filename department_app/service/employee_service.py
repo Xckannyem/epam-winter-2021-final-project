@@ -19,18 +19,28 @@ def get_all_employees():
     return [employee.to_dict() for employee in employees]
 
 
-def add_employee(first_name, last_name, salary, birthday):
+def add_employee(username, email, first_name, last_name, password, department_id, salary, birthday):
     """
     Add a new employee
+    :param username: the employee username
+    :param email: the employee email
+    :param department_id: the department_id
+    :param password: the employee password
     :param first_name: the employee first name
     :param last_name: the employee last name
+    :param password: the employee password
+     :param department_id: the department_id
     :param salary: the employee salary
     :param birthday: the employee birthday in format '%m/%d/%Y'
     """
     birthday = datetime.strptime(birthday, '%m/%d/%Y')
     employee = Employee(
+        username=username,
+        email=email,
         first_name=first_name,
         last_name=last_name,
+        password=password,
+        department_id=department_id,
         salary=salary,
         birthday=birthday
     )
@@ -40,18 +50,28 @@ def add_employee(first_name, last_name, salary, birthday):
 
 
 # pylint: disable=invalid-name
-def update_employee(id, first_name, last_name, salary, birthday):
+def update_employee(id, username, email, first_name, last_name, password, department_id, salary, birthday):
     """
     Update an existing employee
     :param id: id by which the required employee is updated
+    :param username: the employee username
+    :param email: the employee email
+    :param department_id: the department_id
+    :param password: the employee password
     :param first_name: the employee first name
     :param last_name: the employee last name
+    :param password: the employee password
+    :param department_id: the department_id
     :param salary: the employee salary
     :param birthday: the employee birthday in format '%m/%d/%Y'
     """
     employee = Employee.query.get_or_404(id)
+    employee.username = username
+    employee.email = email
     employee.first_name = first_name
     employee.last_name = last_name
+    employee.password = password
+    employee.department_id = department_id
     employee.salary = salary
     employee.birthday = birthday
     # pylint: disable=no-member
@@ -91,14 +111,14 @@ def get_all_employees_in_department(department):
     return [employee.to_dict() for employee in employees]
 
 
-def get_employees_born_on(born):
+def get_employees_born_on(date):
     """
     Get all employees born on a specified date
-    :param born: the date to filter with
+    :param date: the date to filter with
     :return: the list of employees born on a specified date
     """
-    born = datetime.strptime(born, '\'%m/%d/%Y\'').date()
-    employees = Employee.query.filter_by(birthday=born)
+    date = datetime.strptime(date, '\'%m/%d/%Y\'').date()
+    employees = Employee.query.filter_by(birthday=date)
     return [employee.to_dict() for employee in employees]
 
 
