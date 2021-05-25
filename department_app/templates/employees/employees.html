@@ -18,9 +18,9 @@ Employees
             <th> Department </th>
             <th> Salary </th>
             <th> Birthday </th>
-            <th> Age </th>
             <th> Edit </th>
             <th> Assign </th>
+            <th> Delete </th>
           </tr>
           </thead>
           <tbody>
@@ -49,19 +49,18 @@ Employees
                 {% endif %}
               </td>
               <td>
-                {% if employee.birthday %}
-                  {{ employee.calculate_age(employee.birthday) }} y.o.
-                {% else %}
-                -
-                {% endif %}
-              </td>
-              <td>
                 <a href="{{ url_for('user.edit_employee', id=employee.id) }}">Edit</a>
               </td>
               <td>
                 <a href="{{ url_for('user.assign_employee', id=employee.id) }}">
                   <i class="fa fa-user-plus"></i>
                   Assign
+                </a>
+              </td>
+              <td>
+                <a href="{{ url_for('user.delete_employee', id=employee.id) }}">
+                  <i class="fa fa-trash"></i>
+                  Delete
                 </a>
               </td>
             </tr>
