@@ -13,6 +13,7 @@ class EmployeeListApi(Resource):
     """
     Class for EmployeesListApi Resource available at '/api/employees' url
     """
+
     @staticmethod
     def get():
         """
@@ -56,6 +57,7 @@ class Employee(Resource):
     """
     Class for Employee Resource available at /employees/<id> url
     """
+
     @staticmethod
     def get(id):
         """
@@ -80,7 +82,6 @@ class Employee(Resource):
                 email=employee_json['email'],
                 first_name=employee_json['first_name'],
                 last_name=employee_json['last_name'],
-                password=employee_json['password'],
                 department_id=employee_json['department_id'],
                 salary=employee_json['salary'],
                 birthday=employee_json['birthday']
@@ -89,25 +90,23 @@ class Employee(Resource):
             return {'message': 'Wrong data'}, 400
         return 'Employee has been successfully updated', 200
 
-    # TODO fix patch
     @staticmethod
     def patch(id):
         """
         Called when PATCH request is sent
         :return: the 'Employee has been successfully updated' with status code 200
         """
-        department_json = request.json
+        employee_json = request.json
         try:
-            employee_service.update_employee(
+            employee_service.update_employee_patch(
                 id,
-                username=department_json.get('username'),
-                email=department_json.get('email'),
-                first_name=department_json.get('first_name'),
-                last_name=department_json.get('last_name'),
-                password=department_json.get('password'),
-                department_id=department_json.get('department_id'),
-                salary=department_json.get('salary'),
-                birthday=department_json.get('birthday')
+                username=employee_json.get('username'),
+                email=employee_json.get('email'),
+                first_name=employee_json.get('first_name'),
+                last_name=employee_json.get('last_name'),
+                department_id=employee_json.get('department_id'),
+                salary=employee_json.get('salary'),
+                birthday=employee_json.get('birthday')
             )
         except KeyError:
             return {'message': 'Wrong data'}, 400

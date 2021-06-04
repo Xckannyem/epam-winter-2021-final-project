@@ -24,12 +24,10 @@ def add_employee(username, email, first_name, last_name, password, department_id
     Add a new employee
     :param username: the employee username
     :param email: the employee email
-    :param department_id: the department_id
-    :param password: the employee password
     :param first_name: the employee first name
     :param last_name: the employee last name
     :param password: the employee password
-     :param department_id: the department_id
+    :param department_id: the department_id
     :param salary: the employee salary
     :param birthday: the employee birthday in format '%m/%d/%Y'
     """
@@ -50,17 +48,14 @@ def add_employee(username, email, first_name, last_name, password, department_id
 
 
 # pylint: disable=invalid-name
-def update_employee(id, username, email, first_name, last_name, password, department_id, salary, birthday):
+def update_employee(id, username, email, first_name, last_name, department_id, salary, birthday):
     """
     Update an existing employee
     :param id: id by which the required employee is updated
     :param username: the employee username
     :param email: the employee email
-    :param department_id: the department_id
-    :param password: the employee password
     :param first_name: the employee first name
     :param last_name: the employee last name
-    :param password: the employee password
     :param department_id: the department_id
     :param salary: the employee salary
     :param birthday: the employee birthday in format '%m/%d/%Y'
@@ -70,10 +65,42 @@ def update_employee(id, username, email, first_name, last_name, password, depart
     employee.email = email
     employee.first_name = first_name
     employee.last_name = last_name
-    employee.password = password
     employee.department_id = department_id
     employee.salary = salary
     employee.birthday = birthday
+    # pylint: disable=no-member
+    db.session.add(employee)
+    db.session.commit()
+
+
+# pylint: disable=invalid-name
+def update_employee_patch(id, username, email, first_name, last_name, department_id, salary, birthday):
+    """
+    Update an existing employee without overwriting the unspecified elements with null
+    :param id: id by which the required employee is updated
+    :param username: the employee username
+    :param email: the employee email
+    :param first_name: the employee first name
+    :param last_name: the employee last name
+    :param department_id: the department_id
+    :param salary: the employee salary
+    :param birthday: the employee birthday in format '%m/%d/%Y'
+    """
+    employee = Employee.query.get_or_404(id)
+    if username:
+        employee.username = username
+    elif email:
+        employee.email = email
+    elif first_name:
+        employee.first_name = first_name
+    elif last_name:
+        employee.last_name = last_name
+    elif department_id:
+        employee.department_id = department_id
+    elif salary:
+        employee.salary = salary
+    elif birthday:
+        employee.birthday = birthday
     # pylint: disable=no-member
     db.session.add(employee)
     db.session.commit()

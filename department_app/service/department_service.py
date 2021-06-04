@@ -47,6 +47,24 @@ def update_department(id, name, description):
 
 
 # pylint: disable=invalid-name
+def update_department_patch(id, name, description):
+    """
+    Update an existing department without overwriting the unspecified elements with null
+    :param id: id by which the required department is updated
+    :param name: the department name
+    :param description: the department description
+    """
+    department = Department.query.get_or_404(id)
+    if name:
+        department.name = name
+    elif description:
+        department.description = description
+    # pylint: disable=no-member
+    db.session.add(department)
+    db.session.commit()
+
+
+# pylint: disable=invalid-name
 def delete_department(id):
     """
     Delete an existing department

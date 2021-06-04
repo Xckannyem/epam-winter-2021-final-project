@@ -75,7 +75,6 @@ class Department(Resource):
             return {'message': 'Wrong data'}, 400
         return 'Department has been successfully updated', 200
 
-    # TODO fix patch
     @staticmethod
     def patch(id):
         """
@@ -84,7 +83,7 @@ class Department(Resource):
         """
         department_json = request.json
         try:
-            department_service.update_department(
+            department_service.update_department_patch(
                 id,
                 name=department_json.get('name'),
                 description=department_json.get('description')
