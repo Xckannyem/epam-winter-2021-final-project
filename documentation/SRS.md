@@ -56,11 +56,20 @@ Display the login form
 ###### Main scenario:
 
 User clicks the 'Get Started' button on the home page and redirects to the register page where they can redirect to the login page or simply clicks the Login tab.
-If user missclicked the Login tab without having a registered account, they can click on 'Register' button
+If user missclicked the Login tab without having a registered account, they can click on 'Register' button.
 
 ![alt text](mockups/login.png)
 
 Pic. 3 The login form
+***
+### Logout
+
+Ability to logout
+
+###### Main scenario:
+
+Authenticated user can see the 'Logout' tab and clicking it they redirected to the home page
+
 ***
 ### Departments
 
@@ -74,15 +83,15 @@ User clicks the 'View Departments' button on the home page and redirects to the 
    
    2\. Description
    
-   3.\ Employee Count
+   3\. Employee Count
    
-   4.\ Average Salary (average salary of all employees in department)
+   4\. Average Salary (average salary of all employees in department)
    
-   5.\ Average Age (average age of all employees in department)
+   5\. Average Age (average age of all employees in department)
    
-   6.\ Edit (when clicked redirects to the edit department page where you can update department information)
+   6\. Edit (when clicked redirects to the edit department page where you can update department information)
    
-   7.\ Delete
+   7\. Delete
    
    In addition, under the table there is a button to add a department when you click on which redirects to add department page
 
