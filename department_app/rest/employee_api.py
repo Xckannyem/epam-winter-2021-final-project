@@ -2,6 +2,8 @@
 This module consists of the REST operations to work with employees
 """
 # pylint: disable=cyclic-import
+import re
+
 from flask import jsonify, request
 from flask_restful import Resource
 
@@ -18,8 +20,21 @@ class EmployeeListApi(Resource):
     def get():
         """
         Called when GET request is sent
-        :return: all employees in json format
+        :return: all employees in json format which meet the requirements
         """
+        args = request.args
+        try:
+            if len(args) == 2:
+                return jsonify(employee_service.get_employees_born_between(
+                    start_date=args['start_date'],
+                    end_date=args['end_date']
+                ))
+            # display employees who was born in a specified date
+            elif len(args) == 1:
+                return jsonify(employee_service.get_employees_born_on(date=args['date']))
+        except ValueError:
+            return {'message': 'Incorrect date'}, 400
+        # display all employees
         return jsonify(employee_service.get_all_employees())
 
     @staticmethod
