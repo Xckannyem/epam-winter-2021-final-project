@@ -2,8 +2,6 @@
 This module consists of the REST operations to work with employees
 """
 # pylint: disable=cyclic-import
-import re
-
 from flask import jsonify, request
 from flask_restful import Resource
 
