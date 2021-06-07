@@ -158,5 +158,7 @@ def get_employees_born_between(start_date, end_date):
     """
     start_date = datetime.strptime(start_date, '\'%m/%d/%Y\'').date()
     end_date = datetime.strptime(end_date, '\'%m/%d/%Y\'').date()
-    employees = Employee.query.filter(Employee.birthday.between(start_date, end_date))
-    return [employee.to_dict() for employee in employees]
+    # get all employees
+    employees = Employee.query.all()
+    # filter employees by birthday
+    return [employee.to_dict() for employee in employees if start_date <= employee.birthday <= end_date]
