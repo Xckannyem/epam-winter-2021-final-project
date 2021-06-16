@@ -1,5 +1,5 @@
 """
-This module defines the test cases for employee model
+This module defines the test cases for department model
 """
 # pylint: disable=cyclic-import
 from datetime import datetime

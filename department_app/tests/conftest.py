@@ -1,4 +1,6 @@
-
+"""
+This module defines the BaseTestCase class
+"""
 import unittest
 from department_app import create_app, db
 from config import TestingConfig
@@ -24,4 +26,3 @@ class BaseTestCase(unittest.TestCase):
         """
         db.session.remove()
         db.drop_all()
-        self.app_context.pop()

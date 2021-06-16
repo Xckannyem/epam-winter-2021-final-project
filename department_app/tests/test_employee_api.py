@@ -46,7 +46,7 @@ class TestEmployeeApi(BaseTestCase):
         It should return the status code 200
         """
         client = create_app().test_client()
-        url = '/api/employees/4'
+        url = '/api/employees/6'
         response = client.get(url)
         assert response.status_code == http.HTTPStatus.OK
 
@@ -58,12 +58,12 @@ class TestEmployeeApi(BaseTestCase):
         client = create_app().test_client()
         # data should be changed before calling the test
         data = {
-            'username': 'test username',
-            'email': 'testusr@gmail.com',
-            'first_name': 'test',
-            'last_name': 'test',
+            'username': 'test new username',
+            'email': 'new_testusr@gmail.com',
+            'first_name': 'new_test',
+            'last_name': 'new_test',
             'password': 'test1234',
-            'department_id': 2,
+            'department_id': 3,
             'salary': '700',
             'birthday': '10/06/1998'
         }
@@ -84,7 +84,7 @@ class TestEmployeeApi(BaseTestCase):
                 'first_name': 'cool',
                 'last_name': 'test',
                 'password': 'test1234',
-                'department_id': 2,
+                'department_id': 3,
                 'salary': '700',
                 'birthday': '10/06/1998'
             }
@@ -99,14 +99,13 @@ class TestEmployeeApi(BaseTestCase):
         It should return the status code 200
         """
         client = create_app().test_client()
-        url = '/api/employees/4'
+        url = '/api/employees/6'
         data = {
             'username': 'test_persona',
             'email': 'test_persona@ukr.net.com',
             'first_name': 'test_persona',
             'last_name': 'test_persona',
-            'password': 'test1234',
-            'department_id': 2,
+            'department_id': 3,
             'salary': '1700',
             'birthday': '10/06/1998'
         }

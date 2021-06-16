@@ -141,4 +141,4 @@ class TestDepartmentService(BaseTestCase):
         db.session.add(employee1)
         db.session.add(employee2)
         db.session.commit()
-        self.assertEqual(25.5, department_service.get_average_age(department.to_dict()))
+        self.assertEqual(26.0, department_service.get_average_age(department.to_dict()))
