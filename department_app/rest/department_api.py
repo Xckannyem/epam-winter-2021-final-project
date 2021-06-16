@@ -28,6 +28,7 @@ class DepartmentListApi(Resource):
         :return: the 'Department has been successfully added' with status code 201
         """
         department_json = request.json
+        # pylint: disable=no-else-return
         if not department_json:
             return {'message': 'Wrong data'}, 400
         elif department_json['name'] == '' or \
@@ -44,6 +45,7 @@ class DepartmentListApi(Resource):
 
 
 # pylint: disable=invalid-name
+# pylint: disable=redefined-builtin
 class Department(Resource):
     """
     Class for Department Resource available at '/api/departments/<id>' url

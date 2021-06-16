@@ -29,6 +29,7 @@ class TestEmployee(BaseTestCase):
             salary=100,
             birthday=date
         )
+        # pylint: disable=no-member
         db.session.add(employee)
         db.session.commit()
         self.assertEqual('Employee: test_username', repr(employee))

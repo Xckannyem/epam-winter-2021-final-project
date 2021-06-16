@@ -28,6 +28,7 @@ class TestDepartmentApi(BaseTestCase):
     This is the class for department api test cases
     """
 
+    # pylint: disable=no-self-use
     def test_get(self):
         """
         Testing the get request to /api/departments.
@@ -48,7 +49,8 @@ class TestDepartmentApi(BaseTestCase):
         response = client.get(url)
         assert response.status_code == http.HTTPStatus.OK
 
-    @patch('department_app.service.department_service.get_all_departments', autospec=True, return_value=[])
+    @patch('department_app.service.department_service.get_all_departments',
+           autospec=True, return_value=[])
     def test_get_with_mock_db(self, mock_db_call):
         """
         Testing the get request to /api/departments with mock db.
@@ -87,8 +89,8 @@ class TestDepartmentApi(BaseTestCase):
                 'name': 'Test Department1',
                 'description': 'Test Description1'
             }
-            response = client.post('/api/departments', data=json.dumps(data),
-                                   content_type='application/json')
+            client.post('/api/departments', data=json.dumps(data),
+                        content_type='application/json')
             mock_session_add.assert_called_once()
             mock_session_commit.assert_called_once()
 
@@ -98,6 +100,7 @@ class TestDepartmentApi(BaseTestCase):
         It should return the status code 200
         """
         department = Department(name='Test Department1', description='Test Description1')
+        # pylint: disable=no-member
         db.session.add(department)
         db.session.commit()
         client = create_app().test_client()
@@ -116,11 +119,13 @@ class TestDepartmentApi(BaseTestCase):
         """
         # create department
         department = Department(name='Test Department1', description='Test Description1')
+        # pylint: disable=no-member
         db.session.add(department)
         db.session.commit()
 
         # update department
-        with patch('department_app.service.department_service.get_department_by_id') as mocked_query, \
+        with patch('department_app.service.department_service.get_department_by_id') \
+                as mocked_query, \
                 patch('department_app.db.session.add', autospec=True) as mock_session_add, \
                 patch('department_app.db.session.commit', autospec=True) as mock_session_commit:
             mocked_query.return_value = FakeDepartment()
@@ -130,8 +135,8 @@ class TestDepartmentApi(BaseTestCase):
                 'name': 'Update Test Department1',
                 'description': 'Update Test Description1'
             }
-            response = client.put(url, data=json.dumps(data),
-                                  content_type='application/json')
+            client.put(url, data=json.dumps(data),
+                       content_type='application/json')
             mock_session_add.assert_called_once()
             mock_session_commit.assert_called_once()
 
@@ -141,6 +146,7 @@ class TestDepartmentApi(BaseTestCase):
         It should return the status code 204 (NO_CONTENT)
         """
         department = Department(name='Test Department1', description='Test Description1')
+        # pylint: disable=no-member
         db.session.add(department)
         db.session.commit()
 

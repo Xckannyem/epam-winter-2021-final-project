@@ -1,9 +1,6 @@
 """
 This module defines the test cases for department model
 """
-# pylint: disable=cyclic-import
-from datetime import datetime
-
 # pylint: disable=import-error
 from department_app import db
 from department_app.models.employee import Department
@@ -20,7 +17,7 @@ class TestDepartment(BaseTestCase):
         department is correct
         """
         department = Department(name='test_department', description='test')
+        # pylint: disable=no-member
         db.session.add(department)
         db.session.commit()
         self.assertEqual('Department: test_department', repr(department))
-

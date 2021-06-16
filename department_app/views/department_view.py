@@ -60,6 +60,7 @@ def add_department():
 
 
 # pylint: disable=invalid-name
+# pylint: disable=redefined-builtin
 @user.route('/departments/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_department(id):

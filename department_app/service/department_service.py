@@ -31,6 +31,7 @@ def add_department(name, description):
 
 
 # pylint: disable=invalid-name
+# pylint: disable=redefined-builtin
 def update_department(id, name, description):
     """
     Update an existing department

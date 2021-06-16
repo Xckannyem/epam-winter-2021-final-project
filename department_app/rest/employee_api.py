@@ -21,6 +21,7 @@ class EmployeeListApi(Resource):
         :return: all employees in json format which meet the requirements
         """
         args = request.args
+        # pylint: disable=no-else-return
         try:
             if len(args) == 2:
                 return jsonify(employee_service.get_employees_born_between(
@@ -42,6 +43,7 @@ class EmployeeListApi(Resource):
         :return: the 'Employee added' response with status code 201
         """
         employee_json = request.json
+        # pylint: disable=no-else-return
         if not employee_json:
             return {'message': 'Wrong data'}, 400
         elif employee_json['first_name'] == '' or \
@@ -66,6 +68,7 @@ class EmployeeListApi(Resource):
 
 
 # pylint: disable=invalid-name
+# pylint: disable=redefined-builtin
 class Employee(Resource):
     """
     Class for Employee Resource available at /employees/<id> url

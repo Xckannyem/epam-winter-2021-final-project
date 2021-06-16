@@ -2,8 +2,9 @@
 This module defines the BaseTestCase class
 """
 import unittest
-from department_app import create_app, db
+
 from config import TestingConfig
+from department_app import create_app, db
 
 
 class BaseTestCase(unittest.TestCase):

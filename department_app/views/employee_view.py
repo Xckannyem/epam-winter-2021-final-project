@@ -27,6 +27,7 @@ def show_employees():
 
 
 # pylint: disable=invalid-name
+# pylint: disable=redefined-builtin
 @user.route('/employees/assign/<int:id>', methods=['GET', 'POST'])
 @login_required
 def assign_employee(id):

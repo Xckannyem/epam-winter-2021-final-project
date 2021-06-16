@@ -8,7 +8,7 @@ import json
 # pylint: disable=import-error
 from unittest.mock import patch
 
-from department_app import db, create_app
+from department_app import create_app
 from department_app.tests.conftest import BaseTestCase
 
 
@@ -17,6 +17,7 @@ class TestEmployeeApi(BaseTestCase):
     This is the class for employee api test cases
     """
 
+    # pylint: disable=no-self-use
     def test_get(self):
         """
         Testing the get request to /api/employees.
@@ -27,7 +28,8 @@ class TestEmployeeApi(BaseTestCase):
 
         assert response.status_code == http.HTTPStatus.OK
 
-    @patch('department_app.service.employee_service.get_all_employees', autospec=True, return_value=[])
+    @patch('department_app.service.employee_service.get_all_employees',
+           autospec=True, return_value=[])
     def test_get_with_mock_db(self, mock_db_call):
         """
         Testing the get request to /api/employees with mock db.
@@ -88,8 +90,8 @@ class TestEmployeeApi(BaseTestCase):
                 'salary': '700',
                 'birthday': '10/06/1998'
             }
-            response = client.post('/api/employees', data=json.dumps(data),
-                                   content_type='application/json')
+            client.post('/api/employees', data=json.dumps(data),
+                        content_type='application/json')
             mock_session_add.assert_called_once()
             mock_session_commit.assert_called_once()
 

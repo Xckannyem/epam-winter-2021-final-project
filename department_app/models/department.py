@@ -5,6 +5,7 @@ This module consists of the class Department to work with `departments` table
 from department_app import db
 
 
+# pylint: disable=no-member
 class Department(db.Model):
     """
     Create a Department table

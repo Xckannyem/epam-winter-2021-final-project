@@ -19,6 +19,7 @@ def get_all_employees():
     return [employee.to_dict() for employee in employees]
 
 
+# pylint: disable=too-many-arguments
 def add_employee(username, email, first_name, last_name, password, department_id, salary, birthday):
     """
     Add a new employee
@@ -48,6 +49,7 @@ def add_employee(username, email, first_name, last_name, password, department_id
 
 
 # pylint: disable=invalid-name
+# pylint: disable=redefined-builtin
 def update_employee(id, username, email, first_name, last_name, department_id, salary, birthday):
     """
     Update an existing employee
@@ -74,7 +76,8 @@ def update_employee(id, username, email, first_name, last_name, department_id, s
 
 
 # pylint: disable=invalid-name
-def update_employee_patch(id, username, email, first_name, last_name, department_id, salary, birthday):
+def update_employee_patch(id, username, email, first_name,
+                          last_name, department_id, salary, birthday):
     """
     Update an existing employee without overwriting the unspecified elements with null
     :param id: id by which the required employee is updated
@@ -161,4 +164,5 @@ def get_employees_born_between(start_date, end_date):
     # get all employees
     employees = Employee.query.all()
     # filter employees by birthday
-    return [employee.to_dict() for employee in employees if start_date <= employee.birthday <= end_date]
+    return [employee.to_dict() for employee in employees
+            if start_date <= employee.birthday <= end_date]

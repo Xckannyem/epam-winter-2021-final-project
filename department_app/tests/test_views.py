@@ -1,5 +1,5 @@
 """
-This module defines the test cases for all views
+This module defines the test cases for views
 """
 # pylint: disable=cyclic-import
 # pylint: disable=import-error
@@ -15,6 +15,7 @@ class TestBaseView(BaseTestCase):
     This is the class for home_page view test case
     """
 
+    # pylint: disable=no-self-use
     def test_home_page(self):
         """
         Testing home_page accessibility without authorization

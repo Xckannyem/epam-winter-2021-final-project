@@ -13,6 +13,7 @@ from department_app import bcrypt
 from .department import Department
 
 
+# pylint: disable=no-member
 class Employee(UserMixin, db.Model):
     """
     Create an Employee table

@@ -60,6 +60,7 @@ def login_page():
     form = LoginForm()
     if form.validate_on_submit():
 
+        # pylint: disable=no-else-return
         attempted_employee = Employee.query.filter_by(email=form.email.data).first()
         if attempted_employee and attempted_employee.check_password_correction(
                 attempted_password=form.password.data
