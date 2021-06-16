@@ -1,12 +1,9 @@
 language: python
-python:
-  - "3.8.5"
 
 install:
   - pip install -r requirements.txt
 
 script:
-  - coverage run --source="department_app/" -m unittest discover
+  - coverage run -m unittest discover department_app/tests
   - pylint department_app
-  - pycodestyle department_app/ --ignore=E722, E501, E402
-  - coveralls
+  - coverage report
