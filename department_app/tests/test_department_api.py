@@ -82,8 +82,10 @@ class TestDepartmentApi(BaseTestCase):
         """
         Testing the post request to /api/departments with mock db
         """
-        with patch('department_app.db.session.add', autospec=True) as mock_session_add, \
-                patch('department_app.db.session.commit', autospec=True) as mock_session_commit:
+        with patch('department_app.db.session.add',
+                   autospec=True) as mock_session_add, \
+                patch('department_app.db.session.commit',
+                      autospec=True) as mock_session_commit:
             client = create_app().test_client()
             data = {
                 'name': 'Test Department1',
