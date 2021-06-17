@@ -16,7 +16,11 @@ The application should provide such functionality:
 
    6\. Ability to assign an employee to the department
 
-###### P.S.
+   7\. Search employees who were born on the specified date
+
+   8\. Search employees who were born between two dates
+
+##### P.S.
 
 It is assumed that authorized users have the privileges to add, update and delete information from tables
 ***
@@ -25,7 +29,7 @@ It is assumed that authorized users have the privileges to add, update and delet
 When an unauthorized user enters the home page, they see a banner with the 'Get Started' button when clicking on which the user will be redirected to the registration page
 When an authorized user enters the home page, they see a banner with the 'View departments' button when clicking on which the user will be redirected to the departments page
 
-##### Main scenario:
+#### Main scenario:
 
 User opens a site and see the home page
 
@@ -41,7 +45,7 @@ Pic. 1.2 The home page for authenticated user
 
 Display the registration form 
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Get Started' button on the home page and redirects to the register page and if user already has an account they can click the 'Login' button
 
@@ -53,7 +57,7 @@ Pic. 2 The register form
 
 Display the login form
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Get Started' button on the home page and redirects to the register page where they can redirect to the login page or simply clicks the Login tab.
 If user missclicked the Login tab without having a registered account, they can click on 'Register' button.
@@ -66,7 +70,7 @@ Pic. 3 The login form
 
 Ability to logout
 
-###### Main scenario:
+#### Main scenario:
 
 Authenticated user can see the 'Logout' tab and clicking it they redirected to the home page
 
@@ -75,7 +79,7 @@ Authenticated user can see the 'Logout' tab and clicking it they redirected to t
 
 Display the list of departments
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'View Departments' button on the home page and redirects to the departments page or simply clicks the Departments tab where they can see the following columns:
 
@@ -103,7 +107,7 @@ Pic. 4 The list of departments
 
 Display the list of employees
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the Employees tab and redirects to employees page where they can see the following columns:
 
@@ -131,7 +135,7 @@ Pic. 5 The list of employees
 
 Ability to add a new department
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Add Department' button on departments page and application displays the form where user can add new department to the database.
 If the information was successfully added, the user is automatically redirected to the departments page where they can see an added department. An alert about this will also be displayed to the user.
@@ -145,7 +149,7 @@ Pic. 6 Add department
 
 Ability to edit information about department
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Edit' link on departments page and application displays the form where user can update information about department.
 If the information was successfully edited, the user is automatically redirected to the departments page where they can see an updated department. An alert about this will also be displayed to the user
@@ -158,7 +162,7 @@ Pic. 7 Edit department
 
 Ability to delete department
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Delete' link on departments page and application automatically deletes the department.
 If the department was successfully deleted, the user will see an alert about this
@@ -167,7 +171,7 @@ If the department was successfully deleted, the user will see an alert about thi
 
 Ability to add a new employee
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Add Employee' button on departments page and application displays the form where user can add new employee to the database.
 If the information was successfully added, the user is automatically redirected to the employees page where they can see an added employee. An alert about this will also be displayed to the user.
@@ -181,7 +185,7 @@ Pic. 8 Add employee
 
 Ability to edit information about employee
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Edit' link on employees page and application displays the form where user can update information about employee.
 If the information was successfully edited, the user is automatically redirected to the employees page where they can see an updated employee. An alert about this will also be displayed to the user
@@ -194,7 +198,7 @@ Pic. 9 Edit employee
 
 Ability to assign employee to the department
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Assign' link on employees page and application displays the form where user can choose the department to which they want to assign the employee.
 If the employee was successfully assigned, the user is automatically redirected to the employees page where they can see an employee with specified department in 'Department' column. An alert about this will also be displayed to the user
@@ -207,7 +211,7 @@ Pic. 10 Assign employee
 
 Ability to delete employee
 
-###### Main scenario:
+#### Main scenario:
 
 User clicks the 'Delete' link on employees page and application automatically deletes the employee.
 If the employee was successfully deleted, the user will see an alert about this
