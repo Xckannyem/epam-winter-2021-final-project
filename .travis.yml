@@ -6,4 +6,4 @@ install:
 script:
   - coverage run -m unittest discover department_app/tests
   - pylint department_app
-  - coverage report
+  - coveralls
